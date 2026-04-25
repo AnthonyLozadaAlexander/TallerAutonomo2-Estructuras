@@ -1,6 +1,6 @@
-package logica;
+package main;
 
-public class Vehiculo {
+class Vehiculo {
 	
 	private String VINString;
 	private String marcaString;

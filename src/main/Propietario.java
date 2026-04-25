@@ -1,6 +1,6 @@
-package logica;
+package main;
 
-public class Propietario {
+class Propietario {
 	
 	private String cedula;
 	private String nombre;
