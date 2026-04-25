@@ -6,8 +6,10 @@ class Vehiculo implements Serializable {
 	
 	private String VIN;
 	private String marca;
+	private String modelo;
 	private int NumPasajeros;
 	private Propietario propietario;
+	private double Precio;
 	private int año;
 	
 	public Vehiculo(String vinString, String marcaString, int numPasajeros, Propietario propietario, int año) {
