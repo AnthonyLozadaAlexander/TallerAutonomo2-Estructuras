@@ -17,7 +17,7 @@ class Vehiculo implements Serializable {
 		this.VIN = vinString;
 		this.marca = marcaString;
 		this.NumPasajeros = numPasajeros;
-		this.propietario = propietario;
+		this.propietario = propietario; // referencia al objeto propietario
 		this.año = año;
 	}
 	

@@ -17,7 +17,7 @@ class Lectura <T> {
 	}
 	
 	// metodo para abrir el archivo y crear el flujo de lectura
-	public void abrir() throws Exception {
+	public void abrir() throws IOException {
 		archivo = new FileInputStream(nombreArchivo);
 		lectura = new ObjectInputStream(archivo);
 	}
