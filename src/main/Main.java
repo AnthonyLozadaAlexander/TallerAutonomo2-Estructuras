@@ -85,6 +85,7 @@ public class Main {
 						numPasajeros = input.nextInt();
 						input.nextLine(); // Limpiar el buffer
 						do {
+							esValido = true;
 							System.out.println("______________________________________________");
 							System.out.println("Ingrese El Precio Del Vehiculo:");
 							if (!input.hasNextDouble()) {
@@ -172,7 +173,7 @@ public class Main {
 				System.out.println("Opcion Invalida, Por Favor Ingrese Una Opcion Valida (1, 2 o 3)");
 			}
 
-		} while (!opc.equals("1") || !opc.equals("2") || !opc.equals("3"));
+		} while (!opc.equals("1") && !opc.equals("2") && !opc.equals("3"));
 
 		input.close();
 	}
