@@ -1,8 +1,8 @@
-
 package main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -11,9 +11,9 @@ public class Main {
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>(); // ArrayList para almacenar los vehiculos              																		   registrados
 		Escritura<Vehiculo> escritor = new Escritura<>("Vehiculos.dat");
 		Lectura<Vehiculo> lector = new Lectura<Vehiculo>("Vehiculos.dat");
-		Scanner input = new Scanner(System.in);
-		int n, numPasajeros, año;
-		double precio;
+		Scanner input = new Scanner(System.in).useLocale(Locale.US);
+		int n = 0, numPasajeros = 0, año = 0;
+		double precio = 0.0;
 		String opc = "", marca = "", modelo = "";
 		String vin = "";
 		boolean esValido = false;
@@ -88,22 +88,30 @@ public class Main {
 							esValido = true;
 							System.out.println("______________________________________________");
 							System.out.println("Ingrese El Precio Del Vehiculo:");
-							if (!input.hasNextDouble()) {
+							try {
+								if (!input.hasNextDouble()) {
+									System.out.println("Error: Formato Invalido");
+									input.nextLine(); // Limpiar toda la línea
+									esValido = false;
+									continue;
+								}
+								precio = input.nextDouble();
+								input.nextLine(); // Limpiar el buffer
+								System.out.println("______________________________________________");
+								System.out.println("Ingrese El Año Del Vehiculo:");
+								if (!input.hasNextInt()) {
+									System.out.println("Error: Formato Invalido");
+									input.nextLine(); // Limpiar toda la línea
+									esValido = false;
+									continue;
+								}
+								año = input.nextInt();
+								esValido = true;
+							} catch (Exception e) {
 								System.out.println("Error: Formato Invalido");
-								input.next();
+								input.nextLine(); // Limpiar toda la línea
 								esValido = false;
 							}
-							precio = input.nextDouble();
-							input.nextLine(); // Limpiar el buffer
-							System.out.println("______________________________________________");
-							System.out.println("Ingrese El Año Del Vehiculo:");
-							if (!input.hasNextInt()) {
-								System.out.println("Error: Formato Invalido");
-								input.next();
-								esValido = false;
-							}
-							año = input.nextInt();
-							esValido = true;
 						} while (esValido == false);
 						input.nextLine(); // Limpiar el buffer
 						System.out.println("______________________________________________");
