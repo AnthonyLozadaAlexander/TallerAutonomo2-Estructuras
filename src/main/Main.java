@@ -100,7 +100,7 @@ public class Main {
 		double precio = 0.0;
 		String opc = "", marca = "", modelo = "";
 		String vin = "";
-		boolean esValido = false;
+		boolean esValido = false, salir = false;
 		Vehiculo v;
 
 		do {
@@ -217,9 +217,12 @@ public class Main {
 					}
 
 				}
+				
+				salir = false;
 
 				break;
 			case "2":
+				
 				System.out.println("Generando Reporte De Vehiculos Registrados");
 				System.out.println("______________________________________________");
 				StringBuilder reporte = new StringBuilder();
@@ -234,13 +237,13 @@ public class Main {
 				break;
 			case "3":
 				System.out.println("Saliendo Del Sistema...");
-
+				salir = true;
 				break;
 			default:
 				System.out.println("Opcion Invalida, Por Favor Ingrese Una Opcion Valida (1, 2 o 3)");
 			}
 
-		} while (!opc.equals("1") && !opc.equals("2") && !opc.equals("3"));
+		} while (!opc.equals("1") && !opc.equals("2") && !opc.equals("3") && !salir);
 
 		input.close();
 	}
