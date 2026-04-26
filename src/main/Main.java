@@ -12,24 +12,24 @@ public class Main {
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("Debe Ingresar Un Entero Positivo, Por Favor Intente Nuevamente");
 		System.out.print("-> ");
-		System.out.println("----------------------------------------------------------------------");
+		System.out.println("\n----------------------------------------------------------------------");
 	}
 	
 	static void alertaDouble() {
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("Debe Ingresar Un Numero Decimal Positivo, Por Favor Intente Nuevamente");
 		System.out.print("-> ");
-		System.out.println("----------------------------------------------------------------------");
+		System.out.println("\n----------------------------------------------------------------------");
 	}
 	
 	static double validarDouble(Scanner input) {
 		double n = 0.0;
-		boolean esValido = false;
+		boolean esValido = false, salir = false;
 		while(!esValido) {
 			try {
 				if(!input.hasNextDouble()) {
 					System.out.println("Error: Formato Invalido, Se Espera Un Entero Positivo");
-					alertaInt();
+					alertaDouble();
 					input.nextLine(); // Limpiar toda la línea
 					esValido = false;
 				}else {
@@ -74,6 +74,7 @@ public class Main {
 						esValido = false;
 					}else {
 						System.out.println("Ingreso Valido");
+						System.out.println("Presione Enter Para Continuar...");
 						input.nextLine(); // Limpiar el buffer de entrada
 						esValido = true;
 					}
@@ -100,7 +101,7 @@ public class Main {
 		double precio = 0.0;
 		String opc = "", marca = "", modelo = "";
 		String vin = "";
-		boolean esValido = false;
+		boolean esValido = false, salir = false;
 		Vehiculo v;
 
 		do {
@@ -121,6 +122,7 @@ public class Main {
 					System.out.println(" Ingrese El Numero De Vehiculos A Registrar: ");
 					System.out.println("______________________________________________");
 					n = validarEnteros(input);
+					System.out.println("----------------------------------------------");
 
 				} while (n <= 0);
 
@@ -138,51 +140,50 @@ public class Main {
 
 				for (int i = 0; i < vectorVehiculos.getLongitud(); i++) {
 					String numeroIdentificacion, nombre;
-					System.out.println("     Registro Del Vehiculo [" + (i + 1) + "]");
-
-					System.out.println("  --Ingreso De Datos Personales--  ");
-					System.out.println("Ingrese Su Numero De Identificacion: ");
+					System.out.println("                          Registro Del Vehiculo [" + (i + 1) + "]");
+					System.out.println("      	     --Ingreso De Los Datos Personales--  ");
+					System.out.println("     		  Ingrese Su Numero De Identificacion: ");
 					numeroIdentificacion = input.nextLine();
-					System.out.println("______________________________________________");
-					System.out.println("Ingrese su Nombre Completo: ");
+					System.out.println("--------------------------------------------------------------------");
+					System.out.println("                  Ingrese su Nombre Completo: ");
 					nombre = input.nextLine();
-					System.out.println("______________________________________________");
+					System.out.println("--------------------------------------------------------------------");
 
 					Propietario dueño = new Propietario(numeroIdentificacion, nombre);
 					do {
-						System.out.println("  --Ingreso De Los Datos Del Vehiculo--");
-						System.out.println("Ingrese El VIN Del Vehiculo:");
+						System.out.println("         --Ingreso De Los Datos Del Vehiculo--");
+						System.out.println("              Ingrese El VIN Del Vehiculo:");
 						vin = input.nextLine();
-						System.out.println("______________________________________________");
-						System.out.println("Ingrese La Marca Del Vehiculo:");
+						System.out.println("--------------------------------------------------------------------");
+						System.out.println("              Ingrese La Marca Del Vehiculo:");
 						marca = input.nextLine();
-						System.out.println("______________________________________________");
-						System.out.println("Ingrese El Modelo Del Vehiculo:");
+						System.out.println("--------------------------------------------------------------------");
+						System.out.println("              Ingrese El Modelo Del Vehiculo:");
 						modelo = input.nextLine();
-						System.out.println("______________________________________________");
-						System.out.println("Ingrese El Numero De Pasajeros Del Vehiculo:");
+						System.out.println("--------------------------------------------------------------------");
+						System.out.println("       Ingrese El Numero De Pasajeros Del Vehiculo:");
 						numPasajeros = validarEnteros(input);
 						// input.nextLine(); // Limpiar el buffer
 
-						System.out.println("______________________________________________");
-						System.out.println("Ingrese El Precio Del Vehiculo:");
+						System.out.println("--------------------------------------------------------------------");
+						System.out.println("             Ingrese El Precio Del Vehiculo:");
 
 						precio = validarDouble(input);
 						// input.nextLine(); // Limpiar el buffer
-						System.out.println("______________________________________________");
-						System.out.println("Ingrese El Año Del Vehiculo:");
+						System.out.println("--------------------------------------------------------------------");
+						System.out.println("             Ingrese El Año Del Vehiculo:");
 						año = validarEnteros(input);
 						// input.nextLine(); // Limpiar el buffer
 
-						System.out.println("______________________________________________");
+						System.out.println("--------------------------------------------------------------------");
 
 					} while (numPasajeros <= 0 || precio <= 0 || año <= 0 || numPasajeros <= 0 || precio <= 0
 							|| año <= 0);
 					v = new Vehiculo(vin, marca, numPasajeros, dueño, año);
 
 					if (vectorVehiculos.insertarElemento(v, i)) {
-						System.out.println("El Vehiculo [" + (i + 1) + "] ha sido registrado exitosamente.");
-						System.out.println("______________________________________________");
+						System.out.println(" El Vehiculo [" + (i + 1) + "] ha sido registrado exitosamente.");
+						System.out.println("--------------------------------------------------------------------");
 
 						// Guardar vehiculo en el archivo
 						try {
@@ -217,30 +218,39 @@ public class Main {
 					}
 
 				}
-
+				
+                salir = false;
 				break;
 			case "2":
-				System.out.println("Generando Reporte De Vehiculos Registrados");
-				System.out.println("______________________________________________");
+				System.out.println("--------------------------------------------------------------------");
+				System.out.println("             Generando Reporte De Vehiculos Registrados");
+				System.out.println("--------------------------------------------------------------------");
+				if(listaVehiculos.isEmpty()) {
+					System.out.println("   No Hay Vehiculos Registrados Para Mostrar En El Reporte.");
+					salir = false;
+				}
+				
 				StringBuilder reporte = new StringBuilder();
 				for (Vehiculo veh : listaVehiculos) {
 					reporte.append(veh.toString()).append("\n");
 				}
-				System.out.println("----------------------------------------------");
-				System.out.println("       Reporte De Vehiculos Registrados");
-				System.out.println("----------------------------------------------");
+				System.out.println("--------------------------------------------------------------------");
+				System.out.println("                 Reporte De Vehiculos Registrados");
+				System.out.println("--------------------------------------------------------------------");
 				System.out.println(reporte.toString());
-
+				
+				salir = false;
 				break;
 			case "3":
-				System.out.println("Saliendo Del Sistema...");
-
+				System.out.println("                      Saliendo Del Sistema...");
+				salir = true;
 				break;
 			default:
 				System.out.println("Opcion Invalida, Por Favor Ingrese Una Opcion Valida (1, 2 o 3)");
+				salir = false;
 			}
 
-		} while (!opc.equals("1") && !opc.equals("2") && !opc.equals("3"));
+		} while (!salir);
 
 		input.close();
 	}
