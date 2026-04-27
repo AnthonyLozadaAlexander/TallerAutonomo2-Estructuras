@@ -1,11 +1,11 @@
-package main;
+package archivos;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-class Lectura <T> {
+public class Lectura <T> {
 	private String nombreArchivo;
 	private FileInputStream archivo;
 	private ObjectInputStream lectura;

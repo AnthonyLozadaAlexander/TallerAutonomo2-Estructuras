@@ -1,8 +1,8 @@
-package main;
+package TAD;
 
 import java.util.Arrays;
 
-class TADVector <T> {
+public class TADVector <T> {
 	
 	// Atributos de un vector
 	private T[] vector;
@@ -23,11 +23,11 @@ class TADVector <T> {
 		"Elementos: " + Arrays.toString(vector);
 	}
 	
-	String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 	
-	int getLongitud() {
+	public int getLongitud() {
 		return longitud;
 	}
 	
