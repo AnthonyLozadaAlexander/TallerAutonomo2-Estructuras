@@ -43,12 +43,13 @@ class Vehiculo implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Vehiculo: \n" +
+		String info = "\nVehiculo\n" +
 				"VIN: " + VIN + "\n" +
 				"Marca: " + marca + "\n" +
 				"Numero de Pasajeros: " + NumPasajeros + "\n" +
 				"Propietario: " + propietario.getNombre() + "\n" +
-				"Año: " + año;
+				"Año: " + año + "\n";
+		return info; 
 	}
 
 }

@@ -16,14 +16,12 @@ public class Main {
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("Debe Ingresar Un Entero Positivo, Por Favor Intente Nuevamente");
 		System.out.print("-> ");
-		System.out.println("\n----------------------------------------------------------------------");
 	}
 	
 	static void alertaDouble() {
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("Debe Ingresar Un Numero Decimal Positivo, Por Favor Intente Nuevamente");
 		System.out.print("-> ");
-		System.out.println("\n----------------------------------------------------------------------");
 	}
 	
 	static double validarDouble(Scanner input) {
@@ -122,11 +120,11 @@ public class Main {
 			case "1":
 				do {
 					// Ingreso Del Numero De Vehiculos A Registrar
-					System.out.println("______________________________________________");
-					System.out.println(" Ingrese El Numero De Vehiculos A Registrar: ");
-					System.out.println("______________________________________________");
+					System.out.println("--------------------------------------------------------------------");
+					System.out.println("          Ingrese El Numero De Vehiculos A Registrar: ");
+					System.out.println("--------------------------------------------------------------------");
 					n = validarEnteros(input);
-					System.out.println("----------------------------------------------");
+					System.out.println("--------------------------------------------------------------------");
 
 				} while (n <= 0);
 
@@ -144,9 +142,9 @@ public class Main {
 
 				for (int i = 0; i < vectorVehiculos.getLongitud(); i++) {
 					String numeroIdentificacion, nombre;
-					System.out.println("                          Registro Del Vehiculo [" + (i + 1) + "]");
-					System.out.println("      	     --Ingreso De Los Datos Personales--  ");
-					System.out.println("     		  Ingrese Su Numero De Identificacion: ");
+					System.out.println("                    Registro Del Vehiculo [" + (i + 1) + "]");
+					System.out.println("      	      --Ingreso De Los Datos Personales--  ");
+					System.out.println("     	      Ingrese Su Numero De Identificacion: ");
 					numeroIdentificacion = input.nextLine();
 					System.out.println("--------------------------------------------------------------------");
 					System.out.println("                  Ingrese su Nombre Completo: ");
@@ -167,19 +165,13 @@ public class Main {
 						System.out.println("--------------------------------------------------------------------");
 						System.out.println("       Ingrese El Numero De Pasajeros Del Vehiculo:");
 						numPasajeros = validarEnteros(input);
-						// input.nextLine(); // Limpiar el buffer
-
 						System.out.println("--------------------------------------------------------------------");
 						System.out.println("             Ingrese El Precio Del Vehiculo:");
-
 						precio = validarDouble(input);
 						System.out.println("--------------------------------------------------------------------");
-						// input.nextLine(); // Limpiar el buffer
 						System.out.println("--------------------------------------------------------------------");
 						System.out.println("             Ingrese El Año Del Vehiculo:");
 						año = validarEnteros(input);
-						// input.nextLine(); // Limpiar el buffer
-
 						System.out.println("--------------------------------------------------------------------");
 
 					} while (numPasajeros <= 0 || precio <= 0 || año <= 0 || numPasajeros <= 0 || precio <= 0
