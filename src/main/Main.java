@@ -6,6 +6,10 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import TAD.TADVector;
+import archivos.Escritura;
+import archivos.Lectura;
+
 public class Main {
 	
 	static void alertaInt() {
