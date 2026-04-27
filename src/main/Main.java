@@ -97,7 +97,7 @@ public class Main {
 	
 	// Interfaz Consola - Brian
 	public static void main(String[] args) {
-		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>(); // ArrayList para almacenar los vehiculos														
+		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>(); // ArrayList para almacenar los vehiculos
 		Escritura<Vehiculo> escritor = new Escritura<>("Vehiculos.dat");
 		Lectura<Vehiculo> lector = new Lectura<Vehiculo>("Vehiculos.dat");
 		Scanner input = new Scanner(System.in).useLocale(Locale.US);
@@ -173,6 +173,7 @@ public class Main {
 						System.out.println("             Ingrese El Precio Del Vehiculo:");
 
 						precio = validarDouble(input);
+						System.out.println("--------------------------------------------------------------------");
 						// input.nextLine(); // Limpiar el buffer
 						System.out.println("--------------------------------------------------------------------");
 						System.out.println("             Ingrese El Año Del Vehiculo:");
@@ -199,41 +200,44 @@ public class Main {
 						System.out.println("Error: No se pudo registrar el vehiculo [" + (i + 1) + "].");
 						i--; // Decrementar el contador para intentar registrar nuevamente
 					}
-					// Cerrar archivo
-					try {
-						escritor.cerrar();
-					} catch (IOException e) {
-						System.err.println("Error: No se pudo cerrar el archivo.");
-					}
-					// Leer contactos del archivo para verificar que se guardaron correctamente
-					try {
-						lector.abrir();
-						do {
-							v = lector.leer();
-							if (v != null) { // si v no es null, agregarlo a lista de Vehiculos
-								listaVehiculos.add(v);
-							}
-						} while (v != null);
-						lector.cerrar();
-					} catch (IOException e) {
-						System.out.println("Error: No se pudo leer el archivo de vehiculos.");
-					} catch (ClassNotFoundException e) {
-						System.out.println("Error: El formato del archivo de vehiculos es incorrecto.");
-					}
 
 				}
 				
-                salir = false;
+				// Cerrar archivo
+				try {
+					escritor.cerrar();
+				} catch (IOException e) {
+					System.err.println("Error: No se pudo cerrar el archivo.");
+				}
+				
+				// Leer contactos del archivo para verificar que se guardaron correctamente
+				try {
+					lector.abrir();
+					listaVehiculos.clear(); // Limpiar la lista antes de cargar los vehiculos desde el archivo
+					do {
+						v = lector.leer();
+						if (v != null) { // si v no es null, agregarlo a lista de Vehiculos
+							listaVehiculos.add(v);
+						}
+					} while (v != null);
+					lector.cerrar();
+				} catch (IOException e) {
+					System.out.println("Error: No se pudo leer el archivo de vehiculos.");
+				} catch (ClassNotFoundException e) {
+					System.out.println("Error: El formato del archivo de vehiculos es incorrecto.");
+				}
+
+				salir = false;
 				break;
 			case "2":
 				System.out.println("--------------------------------------------------------------------");
 				System.out.println("             Generando Reporte De Vehiculos Registrados");
 				System.out.println("--------------------------------------------------------------------");
-				if(listaVehiculos.isEmpty()) {
+				if (listaVehiculos.isEmpty()) {
 					System.out.println("   No Hay Vehiculos Registrados Para Mostrar En El Reporte.");
 					salir = false;
 				}
-				
+
 				StringBuilder reporte = new StringBuilder();
 				for (Vehiculo veh : listaVehiculos) {
 					reporte.append(veh.toString()).append("\n");
@@ -242,7 +246,7 @@ public class Main {
 				System.out.println("                 Reporte De Vehiculos Registrados");
 				System.out.println("--------------------------------------------------------------------");
 				System.out.println(reporte.toString());
-				
+
 				salir = false;
 				break;
 			case "3":
